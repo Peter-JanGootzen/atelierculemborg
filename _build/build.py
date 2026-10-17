@@ -41,19 +41,20 @@ def image(slug: str, sizes: str | None = None, cls: str = "", eager: bool = Fals
     item = MANIFEST[slug]
     alt = attr(item["alt"])
     loading = "eager" if eager else "lazy"
+    prio = ' fetchpriority="high"' if eager else ""
     common = f'class="{cls}" ' if cls else ""
     if "only" in item["variants"]:
         name = item["variants"]["only"]
         w, h = item["only_w"], item["only_h"]
         return (f'<img src="assets/img/{name}" width="{w}" height="{h}" alt="{alt}" '
-                f'{common}loading="{loading}" decoding="async">')
+                f'{common}loading="{loading}"{prio} decoding="async">')
     sm, lg = item["variants"]["sm"], item["variants"]["lg"]
     src = sm
     srcset = (f'assets/img/{sm} {item["sm_w"]}w, assets/img/{lg} {item["lg_w"]}w')
     sizes = sizes or "(max-width: 760px) 100vw, 50vw"
     return (f'<img src="assets/img/{src}" srcset="{srcset}" sizes="{attr(sizes)}" '
             f'width="{item["sm_w"]}" height="{item["sm_h"]}" alt="{alt}" {common}'
-            f'loading="{loading}" decoding="async">')
+            f'loading="{loading}"{prio} decoding="async">')
 
 
 def meta_desc(text: str, limit: int = 156) -> str:

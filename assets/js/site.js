@@ -8,13 +8,17 @@
 
   function closeNav() {
     document.body.classList.remove("nav-open");
-    if (toggle) toggle.setAttribute("aria-expanded", "false");
+    if (toggle) {
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "Menu openen");
+    }
   }
 
   if (toggle && nav) {
     toggle.addEventListener("click", function () {
       var open = document.body.classList.toggle("nav-open");
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.setAttribute("aria-label", open ? "Menu sluiten" : "Menu openen");
     });
     nav.addEventListener("click", function (e) {
       if (e.target.closest("a")) closeNav();
