@@ -95,7 +95,7 @@ def head(page: dict, path: str, extra_ld: list[dict] | None = None,
 <title>{e(title)}</title>
 <meta name="description" content="{attr(desc)}">
 <link rel="canonical" href="{canonical}">
-<meta name="robots" content="index,follow">
+<meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="author" content="Atelier Culemborg">
 <meta name="theme-color" content="#131116">
 <meta property="og:type" content="{og_type}">
