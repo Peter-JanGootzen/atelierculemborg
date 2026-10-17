@@ -1,0 +1,349 @@
+{
+ "logo-atelier-culemborg": {
+  "alt": "Logo van Atelier Culemborg: penselen met verf boven de handgeschreven naam",
+  "source": "Home_files/shapeimage_2[1].jpg",
+  "w": 410,
+  "h": 191,
+  "variants": {
+   "only": "logo-atelier-culemborg.webp"
+  },
+  "only_w": 410,
+  "only_h": 191
+ },
+ "portret-alicja-gootzen": {
+  "alt": "Alicja Gootzen, kunstenares van Atelier Culemborg",
+  "source": "Contact_files/shapeimage_2.png",
+  "w": 281,
+  "h": 374,
+  "variants": {
+   "only": "portret-alicja-gootzen.webp"
+  },
+  "only_w": 281,
+  "only_h": 374
+ },
+ "kunstwerk-waterlelies": {
+  "alt": "Aquarel met waterlelies en bloemen in blauwe, groene en paarse tinten",
+  "source": "Home_files/home_kunstwerk_nieuw.jpg",
+  "w": 732,
+  "h": 1493,
+  "variants": {
+   "only": "kunstwerk-waterlelies.webp"
+  },
+  "only_w": 732,
+  "only_h": 1493
+ },
+ "cursus-aquarel": {
+  "alt": "Aquarel van zonnebloemen in gele en blauwe tinten",
+  "source": "Aquarel_files/P8150003.jpg",
+  "w": 308,
+  "h": 410,
+  "variants": {
+   "only": "cursus-aquarel.webp"
+  },
+  "only_w": 308,
+  "only_h": 410
+ },
+ "cursus-acryl": {
+  "alt": "Acrylschilderij van zonnebloemen op een ezel, met verftubes en palet",
+  "source": "Acryl_files/P8140007.jpg",
+  "w": 436,
+  "h": 327,
+  "variants": {
+   "only": "cursus-acryl.webp"
+  },
+  "only_w": 436,
+  "only_h": 327
+ },
+ "cursus-olieverf": {
+  "alt": "Olieverfschilderij van zonnebloemen in warme gele tinten",
+  "source": "Olieverf_files/P8150007.jpg",
+  "w": 336,
+  "h": 448,
+  "variants": {
+   "only": "cursus-olieverf.webp"
+  },
+  "only_w": 336,
+  "only_h": 448
+ },
+ "cursus-gemengde-technieken": {
+  "alt": "Ingelijst werk in gemengde techniek met een vogel",
+  "source": "Gemengde_Technieken_files/P8150008.jpg",
+  "w": 327,
+  "h": 435,
+  "variants": {
+   "only": "cursus-gemengde-technieken.webp"
+  },
+  "only_w": 327,
+  "only_h": 435
+ },
+ "cursus-pastelkrijt": {
+  "alt": "Pasteltekening van een landschap met een kerktoren tussen bomen",
+  "source": "Pastelkrijt_files/Foto's tekenles nieuwe site - 17.jpg",
+  "w": 396,
+  "h": 279,
+  "variants": {
+   "only": "cursus-pastelkrijt.webp"
+  },
+  "only_w": 396,
+  "only_h": 279
+ },
+ "cursus-tekenen": {
+  "alt": "Houtskooltekening van een leeuwenkop",
+  "source": "Tekenen_files/DSCN2101.jpg",
+  "w": 326,
+  "h": 434,
+  "variants": {
+   "only": "cursus-tekenen.webp"
+  },
+  "only_w": 326,
+  "only_h": 434
+ },
+ "cursus-tekenen-houtskool": {
+  "alt": "Houtskooltekening van een meisje dat viool speelt",
+  "source": "Tekenen_files/shapeimage_2.png",
+  "w": 630,
+  "h": 293,
+  "variants": {
+   "only": "cursus-tekenen-houtskool.webp"
+  },
+  "only_w": 630,
+  "only_h": 293
+ },
+ "modetekenen-1": {
+  "alt": "Modetekening van een figuur met hoed en gestreepte jas",
+  "source": "Modetekenen_files/Foto's tekenles nieuwe site - 05.jpg",
+  "w": 210,
+  "h": 280,
+  "variants": {
+   "only": "modetekenen-1.webp"
+  },
+  "only_w": 210,
+  "only_h": 280
+ },
+ "modetekenen-2": {
+  "alt": "Modetekening op een groene achtergrond met ruitpatroon",
+  "source": "Modetekenen_files/Foto's tekenles nieuwe site - 08.jpg",
+  "w": 210,
+  "h": 279,
+  "variants": {
+   "only": "modetekenen-2.webp"
+  },
+  "only_w": 210,
+  "only_h": 279
+ },
+ "modetekenen-3": {
+  "alt": "Modetekening in zwart-wit met een rood ruitpatroon",
+  "source": "Modetekenen_files/Foto's tekenles nieuwe site - 09.jpg",
+  "w": 210,
+  "h": 280,
+  "variants": {
+   "only": "modetekenen-3.webp"
+  },
+  "only_w": 210,
+  "only_h": 280
+ },
+ "jongeren-1": {
+  "alt": "Schilderij van een witte zwaan in pasteltinten",
+  "source": "Jongeren_files/Foto's tekenles nieuwe site - 16.jpg",
+  "w": 354,
+  "h": 266,
+  "variants": {
+   "only": "jongeren-1.webp"
+  },
+  "only_w": 354,
+  "only_h": 266
+ },
+ "jongeren-2": {
+  "alt": "Portretschilderij van een leeuw",
+  "source": "Jongeren_files/Foto's tekenles nieuwe site - 18.jpg",
+  "w": 199,
+  "h": 267,
+  "variants": {
+   "only": "jongeren-2.webp"
+  },
+  "only_w": 199,
+  "only_h": 267
+ },
+ "kinderen-1": {
+  "alt": "Kindertekeningen in een vitrinekast",
+  "source": "Kinderen_files/Foto's tekenles nieuwe site - 12.jpg",
+  "w": 326,
+  "h": 244,
+  "variants": {
+   "only": "kinderen-1.webp"
+  },
+  "only_w": 326,
+  "only_h": 244
+ },
+ "kinderen-2": {
+  "alt": "Vitrine met werk van de kindertekencursus",
+  "source": "Kinderen_files/shapeimage_2.png",
+  "w": 287,
+  "h": 382,
+  "variants": {
+   "only": "kinderen-2.webp"
+  },
+  "only_w": 287,
+  "only_h": 382
+ },
+ "kinderen-3": {
+  "alt": "Expositie met tekeningen in de openbare bibliotheek van Culemborg",
+  "source": "Kinderen_files/DSCN1390.jpg",
+  "w": 344,
+  "h": 258,
+  "variants": {
+   "only": "kinderen-3.webp"
+  },
+  "only_w": 344,
+  "only_h": 258
+ },
+ "kinderen-4": {
+  "alt": "Meisje aan het tekenen aan tafel",
+  "source": "Kinderen_files/Knipsel 1.jpg",
+  "w": 197,
+  "h": 246,
+  "variants": {
+   "only": "kinderen-4.webp"
+  },
+  "only_w": 197,
+  "only_h": 246
+ },
+ "natuursteen-1": {
+  "alt": "Beeld van twee olifanten, gebeeldhouwd uit natuursteen",
+  "source": "Over_mij_files/DSCN2370.jpg",
+  "w": 251,
+  "h": 334,
+  "variants": {
+   "only": "natuursteen-1.webp"
+  },
+  "only_w": 251,
+  "only_h": 334
+ },
+ "natuursteen-2": {
+  "alt": "Beeld van vogels op een sokkel, gebeeldhouwd uit natuursteen",
+  "source": "Over_mij_files/DSCN2381.jpg",
+  "w": 250,
+  "h": 334,
+  "variants": {
+   "only": "natuursteen-2.webp"
+  },
+  "only_w": 250,
+  "only_h": 334
+ },
+ "natuursteen-3": {
+  "alt": "Beeld van twee figuren met kronen, gebeeldhouwd uit natuursteen",
+  "source": "Over_mij_files/DSCN2388.jpg",
+  "w": 252,
+  "h": 336,
+  "variants": {
+   "only": "natuursteen-3.webp"
+  },
+  "only_w": 252,
+  "only_h": 336
+ },
+ "natuursteen-4": {
+  "alt": "Beeld van twee gevleugelde figuren, gebeeldhouwd uit natuursteen",
+  "source": "Over_mij_files/DSCN2390.jpg",
+  "w": 252,
+  "h": 335,
+  "variants": {
+   "only": "natuursteen-4.webp"
+  },
+  "only_w": 252,
+  "only_h": 335
+ },
+ "expo-2024-1": {
+  "alt": "Ezel met kinderwerk tijdens de expositie in 2024",
+  "source": "Exposities_files/IMG_20240706_164152_1.jpg",
+  "w": 4032,
+  "h": 3024,
+  "variants": {
+   "lg": "expo-2024-1-1500.webp",
+   "sm": "expo-2024-1-720.webp"
+  },
+  "lg_w": 1500,
+  "lg_h": 1125,
+  "sm_w": 720,
+  "sm_h": 540
+ },
+ "expo-2024-2": {
+  "alt": "Werk van cursisten op tafels in een kerkzaal, expositie 2024",
+  "source": "Exposities_files/IMG_20240706_164246.jpg",
+  "w": 3816,
+  "h": 3024,
+  "variants": {
+   "lg": "expo-2024-2-1500.webp",
+   "sm": "expo-2024-2-720.webp"
+  },
+  "lg_w": 1500,
+  "lg_h": 1189,
+  "sm_w": 720,
+  "sm_h": 571
+ },
+ "expo-2018-1": {
+  "alt": "Bezoekers bekijken schilderijen in het oude stadhuis, expositie 2018",
+  "source": "Exposities_files/IMG_20181013_124846.jpg",
+  "w": 652,
+  "h": 489,
+  "variants": {
+   "only": "expo-2018-1.webp"
+  },
+  "only_w": 652,
+  "only_h": 489
+ },
+ "expo-2018-2": {
+  "alt": "Gang van het oude stadhuis met schilderijen, expositie 2018",
+  "source": "Exposities_files/IMG_20181013_132823.jpg",
+  "w": 675,
+  "h": 507,
+  "variants": {
+   "only": "expo-2018-2.webp"
+  },
+  "only_w": 675,
+  "only_h": 507
+ },
+ "expo-2016-1": {
+  "alt": "Bezoekers bij tekeningen en schilderijen, expositie 2016",
+  "source": "Exposities_files/14720392_319569408429888_4616033394399933871_n.jpg",
+  "w": 683,
+  "h": 456,
+  "variants": {
+   "only": "expo-2016-1.webp"
+  },
+  "only_w": 683,
+  "only_h": 456
+ },
+ "expo-2016-2": {
+  "alt": "Ingang van de expositieruimte met affiche en ballonnen, 2016",
+  "source": "Exposities_files/14925283_319569575096538_5281680739288038596_n.jpg",
+  "w": 468,
+  "h": 702,
+  "variants": {
+   "only": "expo-2016-2.webp"
+  },
+  "only_w": 468,
+  "only_h": 702
+ },
+ "expo-2015-1": {
+  "alt": "Schilderijen in een historische zaal, expositie 2015",
+  "source": "Exposities_files/41DSC01309.jpg",
+  "w": 587,
+  "h": 391,
+  "variants": {
+   "only": "expo-2015-1.webp"
+  },
+  "only_w": 587,
+  "only_h": 391
+ },
+ "expo-2013-1": {
+  "alt": "Schilderij aan de wand in de openbare bibliotheek, 2013",
+  "source": "Exposities_files/IMG_2411.jpg",
+  "w": 605,
+  "h": 404,
+  "variants": {
+   "only": "expo-2013-1.webp"
+  },
+  "only_w": 605,
+  "only_h": 404
+ }
+}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://peter-jangootzen.github.io/atelierculemborg/sitemap.xml
