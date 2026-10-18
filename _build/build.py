@@ -349,7 +349,7 @@ def build_home() -> str:
     </div>
     <figure class="hero__figure">
       <div class="hero__plate">{image("logo-atelier-culemborg", eager=True)}</div>
-      <figcaption class="hero__caption">Teken- en schilderlessen, met aandacht voor ieder mens</figcaption>
+      <figcaption class="hero__caption">Teken- en schilderlessen, met aandacht voor iedereen</figcaption>
     </figure>
   </div>
 </section>
