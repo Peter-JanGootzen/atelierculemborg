@@ -16,8 +16,8 @@ import shutil
 from datetime import date
 from pathlib import Path
 
-from content import (ABOUT, CONTACT, COURSES, EXPOS, HOME, NAV, SITE,
-                     SITE_BASE, SITE_URL)
+from content import (ABOUT, CONTACT, COURSES, EXPOS, HOME, LESSEN, NAV, SITE,
+                     SITE_BASE, SITE_URL, TECHNIEKEN)
 
 ROOT = Path(__file__).resolve().parent.parent
 MANIFEST = json.loads((ROOT / "assets" / "img" / "manifest.json").read_text())
@@ -126,11 +126,24 @@ def header(current: str) -> str:
         cur = ' aria-current="page"' if current == href else ""
         return f'<a href="{href}"{cur}>{e(label)}</a>'
 
-    courses_items = "\n".join(
-        f'<li><a href="{c["slug"]}.html">{e(c["nav"])}'
-        f'<span class="age">{e(c["age"])}</span></a></li>' for c in COURSES)
-    courses_current = "page" if current == "cursussen.html" or any(
-        current == f'{c["slug"]}.html' for c in COURSES) else ""
+    def group(ident: str, label: str, href: str, courses: list[dict]) -> str:
+        items = []
+        for c in courses:
+            note = f'<span class="age">{e(c["age"])}</span>' if c.get("age") else ""
+            items.append(f'<li><a href="{c["slug"]}.html">{e(c["nav"])}{note}</a></li>')
+        items_html = "\n          ".join(items)
+        is_current = current == href or any(current == f'{c["slug"]}.html' for c in courses)
+        cls = ' class="is-current"' if is_current else ""
+        cur = ' aria-current="page"' if current == href else ""
+        return f"""<div class="nav__group" data-open="false">
+        <button type="button" aria-expanded="false" aria-controls="submenu-{ident}"{cls}>
+          {e(label)} <i class="chev" aria-hidden="true"></i>
+        </button>
+        <ul class="nav__menu" id="submenu-{ident}">
+          <li><a href="{href}"{cur}>Alle {e(label.lower())}<span class="age">Overzicht</span></a></li>
+          {items_html}
+        </ul>
+      </div>"""
 
     return f"""<body>
 <a class="skip-link" href="#main">Direct naar de inhoud</a>
@@ -153,38 +166,35 @@ def header(current: str) -> str:
     <nav class="nav" id="site-nav" aria-label="Hoofdmenu">
       {link("Home", "index.html")}
       {link("Over mij", "over-mij.html")}
-      <div class="nav__group" data-open="false">
-        <button type="button" aria-expanded="false" aria-controls="submenu-cursussen"{' class="is-current"' if courses_current else ''}>
-          Cursussen <i class="chev" aria-hidden="true"></i>
-        </button>
-        <ul class="nav__menu" id="submenu-cursussen">
-          <li><a href="cursussen.html"{" aria-current=\"page\"" if current == "cursussen.html" else ""}>Alle cursussen<span class="age">Overzicht</span></a></li>
-          {courses_items}
-        </ul>
-      </div>
+      {group("lessen", "Lessen", "lessen.html", LESSEN)}
+      {group("technieken", "Technieken", "technieken.html", TECHNIEKEN)}
       {link("Exposities", "exposities.html")}
       <a href="contact.html" class="nav__cta"{" aria-current=\"page\"" if current == "contact.html" else ""}>Contact</a>
     </nav>
   </div>
 </header>
 <main id="main">"""
-
-
 def footer() -> str:
-    courses_links = "\n".join(
-        f'<li><a href="{c["slug"]}.html">{e(c["nav"])}</a></li>' for c in COURSES[:6])
+    lessen_links = "\n".join(
+        f'<li><a href="{c["slug"]}.html">{e(c["nav"])}</a></li>' for c in LESSEN)
+    techniek_links = "\n".join(
+        f'<li><a href="{c["slug"]}.html">{e(c["nav"])}</a></li>' for c in TECHNIEKEN)
     return f"""</main>
 <footer class="site-footer">
   <div class="wrap">
     <div class="footer-grid">
       <div>
         <p class="footer-brand">Atelier Culemborg</p>
-        <p>Teken- en schildercursussen voor kinderen, jongeren en volwassenen,
+        <p>Teken- en schilderlessen voor kinderen, jongeren en volwassenen,
         in een eigen atelier op loopafstand van station Culemborg.</p>
       </div>
       <div>
-        <h2>Cursussen</h2>
-        <ul>{courses_links}</ul>
+        <h2>Lessen</h2>
+        <ul>{lessen_links}</ul>
+      </div>
+      <div>
+        <h2>Technieken</h2>
+        <ul>{techniek_links}</ul>
       </div>
       <div>
         <h2>Contact</h2>
@@ -198,17 +208,16 @@ def footer() -> str:
     </div>
     <div class="footer-bottom">
       <p>© <span data-year>{date.today().year}</span> Atelier Culemborg</p>
-      <p><a href="contact.html">Contact</a> · <a href="exposities.html">Exposities</a> · <a href="cursussen.html">Cursussen</a></p>
+      <p><a href="contact.html">Contact</a> · <a href="exposities.html">Exposities</a> · <a href="lessen.html">Lessen</a> · <a href="technieken.html">Technieken</a></p>
     </div>
   </div>
 </footer>
 </body>
 </html>
 """
-
-
 def card(course: dict, kicker: str | None = None) -> str:
-    kicker = kicker or course["age"]
+    if kicker is None:
+        kicker = f"Les · {course['age']}" if course.get("group") == "lessen" else "Techniek"
     return f"""<a class="card reveal" href="{course['slug']}.html">
   <div class="card__media">{image(course["image"], sizes="(max-width: 760px) 100vw, 33vw")}</div>
   <div class="card__body">
@@ -217,8 +226,6 @@ def card(course: dict, kicker: str | None = None) -> str:
     <p class="card__text">{e(course['summary'])}</p>
   </div>
 </a>"""
-
-
 def gallery(slugs: list[str], caption: str = "", natural: bool = False,
             tall: bool = False) -> str:
     if not slugs:
@@ -315,7 +322,8 @@ WEBSITE_LD = {
 # --------------------------------------------------------------------------
 
 def build_home() -> str:
-    cards = "\n".join(card(c) for c in COURSES[:6])
+    lessen_cards = "\n".join(card(c) for c in LESSEN)
+    techniek_cards = "\n".join(card(c) for c in TECHNIEKEN[:6])
     facts = f"""
       <ul class="facts">
         <li><b>Adres</b><span>{SITE['street']}, {SITE['postcode']} {SITE['city']}</span></li>
@@ -334,7 +342,7 @@ def build_home() -> str:
       <h1>Welkom bij<br> Atelier Culemborg</h1>
       <p class="lead">{e(HOME['intro'])}</p>
       <div class="btn-row">
-        <a class="btn btn--primary" href="cursussen.html">Bekijk de cursussen <span class="arrow" aria-hidden="true">→</span></a>
+        <a class="btn btn--primary" href="lessen.html">Bekijk de lessen <span class="arrow" aria-hidden="true">→</span></a>
         <a class="btn btn--ghost" href="contact.html">Neem contact op</a>
       </div>
     </div>
@@ -361,14 +369,27 @@ def build_home() -> str:
 
 <section class="section section--tint">
   <div class="wrap">
-    <p class="eyebrow">Cursussen</p>
+    <p class="eyebrow">Lessen</p>
+    <h2>Voor wie zijn de lessen?</h2>
+    <p class="lead" style="max-width:52ch;margin-bottom:2.5rem">Kinderen, jongeren en volwassenen — of individuele
+    begeleiding, in overleg afgestemd op wat bij u past.</p>
+    <div class="grid grid--3">
+      {lessen_cards}
+    </div>
+    <p style="margin-top:2.5rem"><a class="btn btn--ghost" href="lessen.html">Alle lessen <span class="arrow" aria-hidden="true">→</span></a></p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <p class="eyebrow">Technieken</p>
     <h2>Kies een techniek</h2>
     <p class="lead" style="max-width:52ch;margin-bottom:2.5rem">Van tekenen en aquarel tot olieverf en modetekenen:
-    voor kinderen, jongeren en volwassenen.</p>
+    u kiest de techniek waarmee u werkt.</p>
     <div class="grid grid--3">
-      {cards}
+      {techniek_cards}
     </div>
-    <p style="margin-top:2.5rem"><a class="btn btn--ghost" href="cursussen.html">Alle cursussen <span class="arrow" aria-hidden="true">→</span></a></p>
+    <p style="margin-top:2.5rem"><a class="btn btn--ghost" href="technieken.html">Alle technieken <span class="arrow" aria-hidden="true">→</span></a></p>
   </div>
 </section>
 
@@ -425,21 +446,21 @@ def build_home() -> str:
 """ + footer()
 
 
-def build_courses_overview() -> str:
+def build_lessen() -> str:
     page = {
-        "title": "Cursussen — Atelier Culemborg",
-        "description": "Alle teken- en schildercursussen van Atelier Culemborg: kinderen, jongeren, modetekenen, tekenen, aquarel, acryl, olieverf, pastelkrijt, gemengde technieken en individuele les.",
+        "title": "Lessen — Atelier Culemborg",
+        "description": "Teken- en schilderlessen bij Atelier Culemborg: voor kinderen, jongeren en volwassenen, en individuele les in overleg.",
     }
-    cards = "\n".join(card(c) for c in COURSES)
-    ld = breadcrumb_ld([("Home", ""), ("Cursussen", "cursussen.html")])
-    return head(page, "cursussen.html", [ld]) + header("cursussen.html") + f"""
+    cards = "\n".join(card(c) for c in LESSEN)
+    ld = breadcrumb_ld([("Home", ""), ("Lessen", "lessen.html")])
+    return head(page, "lessen.html", [ld]) + header("lessen.html") + f"""
 <section class="page-head">
   <div class="wrap">
-    {crumbs([("Home", "index.html"), ("Cursussen", None)])}
-    <p class="eyebrow">Aanbod</p>
-    <h1>Cursussen in het atelier</h1>
-    <p class="lead" style="max-width:56ch">Van tekenen en aquarel tot olieverf en modetekenen: tien cursussen
-    in Culemborg, voor kinderen, jongeren en volwassenen.</p>
+    {crumbs([("Home", "index.html"), ("Lessen", None)])}
+    <p class="eyebrow">Voor wie</p>
+    <h1>Lessen in het atelier</h1>
+    <p class="lead" style="max-width:56ch">Voor kinderen, jongeren en volwassenen — en individuele les in overleg.
+    In elke les werkt u in uw eigen tempo, aan uw eigen onderwerp.</p>
   </div>
 </section>
 <section class="section section--tight">
@@ -453,7 +474,45 @@ def build_courses_overview() -> str:
   <div class="wrap">
     <div class="cta-band">
       <div>
-        <h2>Niet zeker welke cursus past?</h2>
+        <h2>Welke techniek past bij u?</h2>
+        <p class="muted">Van tekenen en aquarel tot olieverf en modetekenen.</p>
+      </div>
+      <a class="btn btn--primary" href="technieken.html">Bekijk de technieken</a>
+    </div>
+  </div>
+</section>
+""" + footer()
+
+
+def build_technieken() -> str:
+    page = {
+        "title": "Technieken — Atelier Culemborg",
+        "description": "Alle technieken bij Atelier Culemborg: modetekenen, tekenen, aquarel, acryl, olieverf, pastelkrijt en gemengde technieken.",
+    }
+    cards = "\n".join(card(c) for c in TECHNIEKEN)
+    ld = breadcrumb_ld([("Home", ""), ("Technieken", "technieken.html")])
+    return head(page, "technieken.html", [ld]) + header("technieken.html") + f"""
+<section class="page-head">
+  <div class="wrap">
+    {crumbs([("Home", "index.html"), ("Technieken", None)])}
+    <p class="eyebrow">Waarmee</p>
+    <h1>Technieken</h1>
+    <p class="lead" style="max-width:56ch">Van potlood en houtskool tot olieverf en modetekenen.
+    Kies de techniek die bij u past — of probeer er meerdere uit.</p>
+  </div>
+</section>
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="grid grid--3">
+      {cards}
+    </div>
+  </div>
+</section>
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="cta-band">
+      <div>
+        <h2>Nog niet zeker wat past?</h2>
         <p class="muted">Vertel wat u leuk lijkt, dan kijken we samen verder.</p>
       </div>
       <a class="btn btn--primary" href="contact.html">Neem contact op</a>
@@ -461,10 +520,12 @@ def build_courses_overview() -> str:
   </div>
 </section>
 """ + footer()
-
-
 def build_course(c: dict, idx: int) -> str:
-    others = [COURSES[(idx + n) % len(COURSES)] for n in (1, 2, 3)]
+    group_label = "Lessen" if c["group"] == "lessen" else "Technieken"
+    group_href = "lessen.html" if c["group"] == "lessen" else "technieken.html"
+    group_items = LESSEN if c["group"] == "lessen" else TECHNIEKEN
+    pos = group_items.index(c)
+    others = [group_items[(pos + n) % len(group_items)] for n in (1, 2, 3)]
     body = c["body"]
     lead = body[0]
     rest = "".join(f"<p>{e(p)}</p>" for p in body[1:])
@@ -473,11 +534,11 @@ def build_course(c: dict, idx: int) -> str:
     extra_lead = f'<p class="eyebrow" style="margin-top:1rem">{e(c["lead_extra"])}</p>' if c.get("lead_extra") else ""
 
     page = {
-        "title": f"{c['name']} — cursus bij Atelier Culemborg",
-        "description": meta_desc(f"{c['summary']} Cursus {c['name']} in Culemborg."),
+        "title": f"{c['name']} — Atelier Culemborg",
+        "description": meta_desc(f"{c['summary']} {group_label[:-2]} {c['name']} in Culemborg."),
     }
     ld = [
-        breadcrumb_ld([("Home", ""), ("Cursussen", "cursussen.html"), (c["name"], f"{c['slug']}.html")]),
+        breadcrumb_ld([("Home", ""), (group_label, group_href), (c["name"], f"{c['slug']}.html")]),
         {
             "@context": "https://schema.org",
             "@type": "Course",
@@ -498,7 +559,7 @@ def build_course(c: dict, idx: int) -> str:
     return head(page, f"{c['slug']}.html", ld, og_type="article") + header(f"{c['slug']}.html") + f"""
 <section class="page-head">
   <div class="wrap">
-    {crumbs([("Home", "index.html"), ("Cursussen", "cursussen.html"), (c["name"], None)])}
+    {crumbs([("Home", "index.html"), (group_label, group_href), (c["name"], None)])}
     <p class="eyebrow">{e(c['kicker'])}</p>
     <h1>{e(c['h1'])}</h1>
     <p class="lead" style="max-width:52ch">{e(lead)}</p>
@@ -536,15 +597,13 @@ def build_course(c: dict, idx: int) -> str:
 <section class="section">
   <div class="wrap">
     <p class="eyebrow">Ook mogelijk</p>
-    <h2>Andere cursussen</h2>
+    <h2>Andere {group_label.lower()}</h2>
     <div class="grid grid--3" style="margin-top:2rem">
       {related}
     </div>
   </div>
 </section>
 """ + footer()
-
-
 def build_about() -> str:
     page = ABOUT
     body = "".join(f"<p>{e(p)}</p>" for p in ABOUT["body"])
@@ -630,7 +689,7 @@ def build_exposities() -> str:
         <p class="muted">Bekijk het aanbod of neem contact op voor meer informatie.</p>
       </div>
       <div class="btn-row" style="margin:0">
-        <a class="btn btn--primary" href="cursussen.html">Alle cursussen</a>
+        <a class="btn btn--primary" href="lessen.html">Alle lessen</a>
         <a class="btn btn--ghost" href="contact.html">Contact</a>
       </div>
     </div>
@@ -772,9 +831,30 @@ def build_redirects() -> None:
             item.unlink()
 
 
+def build_root_redirects() -> None:
+    """Oude URL's die niet meer bestaan, wijzen door naar de nieuwe pagina."""
+    (ROOT / "cursussen.html").write_text(f"""<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verplaatst — Atelier Culemborg</title>
+<meta name="description" content="De cursussen heten nu lessen.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="lessen.html">
+<meta http-equiv="refresh" content="0; url=lessen.html">
+</head>
+<body>
+<h1>Deze pagina is verplaatst</h1>
+<p>De cursussen heten nu lessen. Ga naar <a href="lessen.html">de lessen</a>.</p>
+</body>
+</html>
+""", encoding="utf-8")
+
+
 def build_sitemap() -> None:
-    pages = [("", "1.0"), ("cursussen.html", "0.9"), ("over-mij.html", "0.8"),
-             ("exposities.html", "0.7"), ("contact.html", "0.8")]
+    pages = [("", "1.0"), ("lessen.html", "0.9"), ("technieken.html", "0.9"),
+             ("over-mij.html", "0.8"), ("exposities.html", "0.7"), ("contact.html", "0.8")]
     pages += [(f"{c['slug']}.html", "0.8") for c in COURSES]
     today = date.today().isoformat()
     body = "\n".join(
@@ -809,7 +889,8 @@ def build_favicon() -> None:
 
 def main() -> None:
     (ROOT / "index.html").write_text(build_home(), encoding="utf-8")
-    (ROOT / "cursussen.html").write_text(build_courses_overview(), encoding="utf-8")
+    (ROOT / "lessen.html").write_text(build_lessen(), encoding="utf-8")
+    (ROOT / "technieken.html").write_text(build_technieken(), encoding="utf-8")
     for i, c in enumerate(COURSES):
         (ROOT / f"{c['slug']}.html").write_text(build_course(c, i), encoding="utf-8")
     (ROOT / "over-mij.html").write_text(build_about(), encoding="utf-8")
@@ -817,6 +898,7 @@ def main() -> None:
     (ROOT / "contact.html").write_text(build_contact(), encoding="utf-8")
     (ROOT / "404.html").write_text(build_404(), encoding="utf-8")
     build_redirects()
+    build_root_redirects()
     build_sitemap()
     build_favicon()
     print("site gebouwd:", len(list(ROOT.glob('*.html'))), "pagina's")
