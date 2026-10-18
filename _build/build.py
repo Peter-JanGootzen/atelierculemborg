@@ -372,8 +372,8 @@ def build_home() -> str:
   <div class="wrap">
     <p class="eyebrow">Lessen</p>
     <h2>Voor wie zijn de lessen?</h2>
-    <p class="lead" style="max-width:52ch;margin-bottom:2.5rem">Kinderen, jongeren en volwassenen — of individuele
-    begeleiding, in overleg afgestemd op wat bij u past.</p>
+    <p class="lead" style="max-width:52ch;margin-bottom:2.5rem">Kinderen, jongeren en volwassenen,
+    elk in hun eigen tempo.</p>
     <div class="grid grid--3">
       {lessen_cards}
     </div>
@@ -385,7 +385,7 @@ def build_home() -> str:
   <div class="wrap">
     <p class="eyebrow">Technieken</p>
     <h2>Kies een techniek</h2>
-    <p class="lead" style="max-width:52ch;margin-bottom:2.5rem">Van tekenen en aquarel tot olieverf en modetekenen:
+    <p class="lead" style="max-width:52ch;margin-bottom:2.5rem">Van tekenen en aquarel tot olieverf en gemengde technieken:
     u kiest de techniek waarmee u werkt.</p>
     <div class="grid grid--3">
       {techniek_cards}
@@ -450,7 +450,7 @@ def build_home() -> str:
 def build_lessen() -> str:
     page = {
         "title": "Lessen — Atelier Culemborg",
-        "description": "Teken- en schilderlessen bij Atelier Culemborg: voor kinderen, jongeren en volwassenen, en individuele les in overleg.",
+        "description": "Teken- en schilderlessen bij Atelier Culemborg: voor kinderen, jongeren en volwassenen, in kleine groepen.",
     }
     cards = "\n".join(card(c) for c in LESSEN)
     ld = breadcrumb_ld([("Home", ""), ("Lessen", "lessen.html")])
@@ -460,7 +460,7 @@ def build_lessen() -> str:
     {crumbs([("Home", "index.html"), ("Lessen", None)])}
     <p class="eyebrow">Voor wie</p>
     <h1>Lessen in het atelier</h1>
-    <p class="lead" style="max-width:56ch">Voor kinderen, jongeren en volwassenen — en individuele les in overleg.
+    <p class="lead" style="max-width:56ch">Voor kinderen, jongeren en volwassenen.
     In elke les werkt u in uw eigen tempo, aan uw eigen onderwerp.</p>
   </div>
 </section>
@@ -476,7 +476,7 @@ def build_lessen() -> str:
     <div class="cta-band">
       <div>
         <h2>Welke techniek past bij u?</h2>
-        <p class="muted">Van tekenen en aquarel tot olieverf en modetekenen.</p>
+        <p class="muted">Van tekenen en aquarel tot olieverf en gemengde technieken.</p>
       </div>
       <a class="btn btn--primary" href="technieken.html">Bekijk de technieken</a>
     </div>
@@ -488,7 +488,7 @@ def build_lessen() -> str:
 def build_technieken() -> str:
     page = {
         "title": "Technieken — Atelier Culemborg",
-        "description": "Alle technieken bij Atelier Culemborg: modetekenen, tekenen, aquarel, acryl, olieverf, pastelkrijt en gemengde technieken.",
+        "description": "Alle technieken bij Atelier Culemborg: tekenen, aquarel, acryl, olieverf, pastelkrijt en gemengde technieken.",
     }
     cards = "\n".join(card(c) for c in TECHNIEKEN)
     ld = breadcrumb_ld([("Home", ""), ("Technieken", "technieken.html")])
@@ -498,7 +498,7 @@ def build_technieken() -> str:
     {crumbs([("Home", "index.html"), ("Technieken", None)])}
     <p class="eyebrow">Waarmee</p>
     <h1>Technieken</h1>
-    <p class="lead" style="max-width:56ch">Van potlood en houtskool tot olieverf en modetekenen.
+    <p class="lead" style="max-width:56ch">Van potlood en houtskool tot olieverf en gemengde technieken.
     Kies de techniek die bij u past — of probeer er meerdere uit.</p>
   </div>
 </section>
@@ -751,9 +751,7 @@ def build_contact() -> str:
       </div>
       <div class="contact-card">
         <h3 style="margin-bottom:.8rem">Op afspraak</h3>
-        <p class="muted" style="font-size:.95rem">Lestijden en kosten van de lessen in overleg.
-        Ook individuele les aan huis of alleen werken is mogelijk.</p>
-        <p style="margin-top:1rem"><a href="individueel.html">Lees over individuele les →</a></p>
+        <p class="muted" style="font-size:.95rem">Lestijden en kosten van de lessen in overleg.</p>
       </div>
     </div>
   </div>
@@ -796,14 +794,14 @@ def build_redirects() -> None:
         "Over_mij": "over-mij.html",
         "Kinderen": "kinderen.html",
         "Jongeren": "jongeren.html",
-        "Modetekenen": "modetekenen.html",
+        "Modetekenen": "technieken.html",
         "Tekenen": "tekenen.html",
         "Aquarel": "aquarel.html",
         "Acryl": "acryl.html",
         "Olieverf": "olieverf.html",
         "Pastelkrijt": "pastelkrijt.html",
         "Gemengde_Technieken": "gemengde-technieken.html",
-        "Individueel": "individueel.html",
+        "Individueel": "lessen.html",
         "Exposities": "exposities.html",
         "Contact": "contact.html",
     }
@@ -834,20 +832,26 @@ def build_redirects() -> None:
 
 def build_root_redirects() -> None:
     """Oude URL's die niet meer bestaan, wijzen door naar de nieuwe pagina."""
-    (ROOT / "cursussen.html").write_text(f"""<!DOCTYPE html>
+    moved = {
+        "cursussen": ("lessen.html", "De cursussen heten nu lessen."),
+        "individueel": ("lessen.html", "Individuele les is niet meer apart op de site te vinden."),
+        "modetekenen": ("technieken.html", "Modetekenen is niet meer als aparte techniek op de site te vinden."),
+    }
+    for old, (new, why) in moved.items():
+        (ROOT / f"{old}.html").write_text(f"""<!DOCTYPE html>
 <html lang="nl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Verplaatst — Atelier Culemborg</title>
-<meta name="description" content="De cursussen heten nu lessen.">
+<title>Verplaatst: {old} — Atelier Culemborg</title>
+<meta name="description" content="{why}">
 <meta name="robots" content="noindex,follow">
-<link rel="canonical" href="lessen.html">
-<meta http-equiv="refresh" content="0; url=lessen.html">
+<link rel="canonical" href="{new}">
+<meta http-equiv="refresh" content="0; url={new}">
 </head>
 <body>
 <h1>Deze pagina is verplaatst</h1>
-<p>De cursussen heten nu lessen. Ga naar <a href="lessen.html">de lessen</a>.</p>
+<p>{why} Ga naar <a href="{new}">het actuele aanbod</a>.</p>
 </body>
 </html>
 """, encoding="utf-8")

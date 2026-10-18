@@ -83,7 +83,7 @@ COURSES = [
         image="cursus-olieverf",
         body=[
             "Voor volwassenen die graag willen leren tekenen en schilderen, of die het na jaren weer willen oppakken.",
-            "Er zijn vele thema’s mogelijk, bijvoorbeeld: landschappen, bloemen, stillevens, abstracte vormen, portretten van mensen en huisdieren, of modetekenen.",
+            "Er zijn vele thema’s mogelijk, bijvoorbeeld: landschappen, bloemen, stillevens, abstracte vormen, portretten van mensen en huisdieren.",
             "U kiest zelf de techniek waarmee u werkt: aquarel, acryl, olieverf, pastelkrijt, inkt, houtskool of een combinatie daarvan.",
             "De begeleiding is persoonlijk: u werkt in uw eigen tempo, naar uw eigen inspiratie of naar opdracht, met aandacht voor kleurgebruik, licht en schaduw, lijnen en perspectief.",
             "Het atelier ligt op loopafstand van NS- en busstation Culemborg.",
@@ -93,46 +93,8 @@ COURSES = [
         gallery=[],
         tags=["Eigen tempo", "Eigen onderwerp", "Alle technieken"],
     ),
-    dict(
-        slug="individueel",
-        group="lessen",
-        nav="Individueel",
-        name="Individueel",
-        h1="Individuele teken- en schilderlessen",
-        kicker="Les · in overleg",
-        age="In overleg",
-        summary="Les aan huis of alleen werken, in overleg afgestemd op wat bij u past.",
-        image="cursus-acryl",
-        body=[
-            "Bent u door leeftijd of een handicap aan huis gebonden of vindt u het niet zo plezierig om in een groep te werken?",
-            "Er bestaat de mogelijkheid om individuele teken- en schilderlessen te volgen.",
-            "Tijdens een gesprek wordt er gekeken welke teken- en schildertechniek bij u past.",
-            "U leert alles over het mengen van kleuren, toepassen van licht en schaduw, het gebruik van lijnen, perspectief en het kiezen van het juiste onderwerp. U leert bewuster kijken naar de dingen om u heen. U werkt naar uw eigen inspiratie of naar een opdracht.",
-            "Tekenen en schilderen kunnen een geweldige bezigheid en een welkome invulling van uw vrije tijd worden! Lestijden en kosten van de lessen in overleg.",
-        ],
-        gallery=[],
-        tags=["Aan huis", "Eigen tempo", "In overleg"],
-    ),
-    dict(
-        slug="modetekenen",
-        group="technieken",
-        nav="Modetekenen",
-        name="Modetekenen",
-        h1="Modetekenen",
-        kicker="Techniek · mode en ontwerpen",
-        summary="Stap voor stap een model, rok, topje, broek en accessoires leren tekenen en schilderen.",
-        image="modetekenen-1",
-        body=[
-            "Teken je graag? Vind je mode leuk? Of wil je voor jezelf iets ontwerpen?",
-            "In deze les leer je stap voor stap hoe je bijvoorbeeld een model, rok, topje, broek en accessoires kunt tekenen en schilderen. Deze les is zowel voor jeugd als voor volwassenen.",
-            "Je leert over compositie, kleuren en het gebruik van lijnen. Je ontwerpen worden in kleur (aquarel, acryl of inkt) en stof uitgewerkt. Er komen zowel moderne als historische ontwerpen aan bod.",
-            "Het atelier ligt op loopafstand van NS- en busstation Culemborg.",
-            "Goed bereikbaar vanuit Geldermalsen, Buurmalsen, Tricht, Houten en Utrecht!",
-            "Aanmelden kan het hele schooljaar door. Geen les tijdens de schoolvakantie.",
-        ],
-        gallery=["modetekenen-2", "modetekenen-3"],
-        tags=["Aquarel", "Acryl", "Inkt", "Stof"],
-    ),
+
+
     dict(
         slug="tekenen",
         group="technieken",
@@ -249,10 +211,10 @@ TECHNIEKEN = [c for c in COURSES if c["group"] == "technieken"]
 
 HOME = {
     "title": "Atelier Culemborg — teken- en schilderlessen in Culemborg",
-    "description": "Teken- en schilderlessen in Culemborg: aquarel, acryl, olieverf, pastel, tekenen en modetekenen. Voor kinderen, jongeren en volwassenen.",
-    "intro": "Bij Atelier Culemborg wordt met veel aandacht en onder deskundige begeleiding gekeken naar uw persoonlijke wensen. Zowel les in groepen als individuele les is mogelijk.",
+    "description": "Teken- en schilderlessen in Culemborg: aquarel, acryl, olieverf, pastel, tekenen en gemengde technieken. Voor kinderen, jongeren en volwassenen.",
+    "intro": "Bij Atelier Culemborg wordt met veel aandacht en onder deskundige begeleiding gekeken naar uw persoonlijke wensen.",
     "themes": [
-        "Er zijn vele thema’s mogelijk, bijvoorbeeld: landschappen, bloemen, stillevens, abstracte vormen, portretten van mensen/huisdieren en modetekenen.",
+        "Er zijn vele thema’s mogelijk, bijvoorbeeld: landschappen, bloemen, stillevens, abstracte vormen, portretten van mensen en huisdieren.",
         "Er wordt met verschillende technieken gewerkt, waaronder: aquarel, acryl, olieverf, pastel, inkt, houtskool en gemengde technieken.",
         "U werkt in uw eigen tempo.",
     ],
@@ -266,7 +228,7 @@ ABOUT = {
     "title": "Over mij — Atelier Culemborg",
     "description": "Alicja Gootzen geeft in haar atelier in Culemborg teken- en schilderlessen aan kinderen, jeugd en volwassenen, en cultuurlessen in Buren.",
     "body": [
-        "In mijn eigen atelier in Culemborg geef ik teken- en schilderlessen aan kinderen, jeugd en volwassenen. Cursisten kunnen kiezen uit verschillende thema’s: landschappen, dieren, portretten, striptekenen en modetekenen.",
+        "In mijn eigen atelier in Culemborg geef ik teken- en schilderlessen aan kinderen, jeugd en volwassenen. Cursisten kunnen kiezen uit verschillende thema’s: landschappen, dieren, portretten en striptekenen.",
         "Plezier in tekenen en schilderen, maar ook goede begeleiding staan bij mij altijd centraal.",
         "Daarnaast geef ik met heel veel plezier cultuurlessen in groepen van 3 t/m 8 op de Koningin Beatrix school in Buren. Ook heb ik voor de Wereldwinkel tevens een aantal schetsen/ontwerpen gemaakt met als thema ‘kerstfeest’. Deze zijn door een Zimbabwaanse kunstenaar gebeeldhouwd uit natuursteen en zijn nu te koop in een aantal wereldwinkels.",
     ],
