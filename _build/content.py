@@ -3,8 +3,8 @@
 iWeb-site; alleen hier en daar is een spelfout hersteld. Nieuwe zinnen zijn
 beperkt tot koppen en korte navigatieteksten."""
 
-SITE_URL = "https://peter-jangootzen.github.io/atelierculemborg"
-SITE_BASE = "/atelierculemborg/"  # alleen gebruikt voor 404.html
+SITE_URL = "https://atelierculemborg.nl"
+SITE_BASE = "/"  # alleen gebruikt voor 404.html
 
 SITE = {
     "name": "Atelier Culemborg",
