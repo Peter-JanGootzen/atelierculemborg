@@ -279,6 +279,8 @@ p:last-child { margin-bottom: 0; }
   color: var(--text-soft);
 }
 .nav__menu a:hover { background: rgba(255, 255, 255, 0.06); color: #fff; }
+.nav__menu a[aria-current="page"] { color: var(--accent); }
+.nav__menu a[aria-current="page"]::after { display: none; }
 .nav__menu a .age { color: var(--muted); font-size: 0.78rem; white-space: nowrap; }
 .nav__group > button.is-current { color: var(--accent); }
 

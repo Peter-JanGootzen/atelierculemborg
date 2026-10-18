@@ -130,7 +130,8 @@ def header(current: str) -> str:
         items = []
         for c in courses:
             note = f'<span class="age">{e(c["age"])}</span>' if c.get("age") else ""
-            items.append(f'<li><a href="{c["slug"]}.html">{e(c["nav"])}{note}</a></li>')
+            cur = ' aria-current="page"' if current == f'{c["slug"]}.html' else ""
+            items.append(f'<li><a href="{c["slug"]}.html"{cur}>{e(c["nav"])}{note}</a></li>')
         items_html = "\n          ".join(items)
         is_current = current == href or any(current == f'{c["slug"]}.html' for c in courses)
         cls = ' class="is-current"' if is_current else ""
@@ -729,7 +730,7 @@ def build_contact() -> str:
       <a class="btn btn--ghost" href="mailto:{SITE['email']}">Mailen</a>
     </div>
     <p style="margin-top:1.5rem">
-      <a class="muted" style="font-size:.85rem" href="https://www.openstreetmap.org/search?query=Achter+%27t+Zand+87+Culemborg" target="_blank" rel="noopener">Bekijk de locatie op OpenStreetMap →</a>
+      <a class="muted" style="font-size:.85rem" href="https://www.google.com/maps/search/?api=1&amp;query=Achter+%27t+Zand+87%2C+4103+XN+Culemborg" target="_blank" rel="noopener">Bekijk de locatie op Google Maps →</a>
     </p>
   </div>
   <figure class="figure-mat" style="max-width:{natural("portret-alicja-gootzen")}px">
