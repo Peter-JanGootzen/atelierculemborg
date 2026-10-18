@@ -139,8 +139,11 @@ def header(current: str) -> str:
     <a class="brand" href="index.html">
       <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true" focusable="false">
         <circle cx="15" cy="15" r="14" fill="none" stroke="currentColor" stroke-opacity=".3"/>
-        <path d="M9.5 20.5 15 8.6l5.5 11.9" fill="none" stroke="#cba8d9" stroke-width="1.2" stroke-linecap="round"/>
-        <path d="M11.8 16.6h6.4" stroke="#cba8d9" stroke-width="1.2" stroke-linecap="round"/>
+        <g transform="rotate(-38 15 15)" stroke-linecap="round">
+          <rect x="13.75" y="4.6" width="2.5" height="6.6" rx="1.25" fill="currentColor" opacity=".9"/>
+          <rect x="12.6" y="11.1" width="4.8" height="3.2" rx=".7" fill="none" stroke="#cba8d9" stroke-width="1.1"/>
+          <path d="M12.6 14.3 h4.8 l-2.4 4.6 z" fill="#cba8d9" opacity=".85"/>
+        </g>
       </svg>
       <span>Atelier Culemborg<small>Teken- en schilderlessen</small></span>
     </a>
@@ -792,8 +795,13 @@ def build_sitemap() -> None:
 def build_favicon() -> None:
     svg = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <rect width="64" height="64" rx="14" fill="#231a2b"/>
-  <path d="M17 46 32 16l15 30" fill="none" stroke="#cba8d9" stroke-width="3.2" stroke-linecap="round"/>
-  <path d="M22.5 37h19" stroke="#cba8d9" stroke-width="3.2" stroke-linecap="round"/>
+  <g transform="scale(2.1333)">
+    <g transform="rotate(-38 15 15)" stroke-linecap="round">
+      <rect x="13.75" y="4.6" width="2.5" height="6.6" rx="1.25" fill="#efeaf2" opacity=".92"/>
+      <rect x="12.6" y="11.1" width="4.8" height="3.2" rx=".7" fill="none" stroke="#cba8d9" stroke-width="1.1"/>
+      <path d="M12.6 14.3 h4.8 l-2.4 4.6 z" fill="#cba8d9" opacity=".9"/>
+    </g>
+  </g>
 </svg>
 """
     (ROOT / "favicon.svg").write_text(svg, encoding="utf-8")
